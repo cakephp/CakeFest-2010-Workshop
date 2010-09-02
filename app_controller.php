@@ -31,4 +31,24 @@
  * @subpackage    cake.app
  */
 class AppController extends Controller {
+	public $components = array('Session', 'Auth');
+
+	public function beforeFilter() {
+		$this->_setupAuth();
+		$this->_setupUser();
+	}
+
+	protected function _setupAuth(){
+		$this->Auth->logoutRedirect = array(
+			'controller' => 'pages',
+			'action' => 'display',
+			'come-back'
+		);
+	}
+	
+	protected function _setupUser() {
+		if ($this->Auth->user()) {
+			$this->set('userData', $this->Auth->user());
+		}
+	}
 }

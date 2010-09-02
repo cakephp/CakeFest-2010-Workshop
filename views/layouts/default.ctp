@@ -36,9 +36,29 @@
 <body>
 	<div id="container">
 		<div id="header">
-			<h1><?php echo $this->Html->link(__('CakePHP: the rapid development php framework', true), 'http://cakephp.org'); ?></h1>
+			<h1><?php echo $this->Html->link(__('CakePHP CakeFest Workshops, 2010', true), 'http://cakephp.org'); ?></h1>
 		</div>
 		<div id="content">
+			<?php if (!empty($userData)): ?>
+				Hello, <?php echo $userData['User']['username']; ?>.
+				Would you like to <?php echo $this->Html->link(
+					__('Logout', true),
+					array(
+						'controller' => 'users',
+						'action' => 'logout')); ?>
+			<?php else: ?>
+				<?php echo $this->Html->link(
+					__('Login', true),
+					array(
+						'controller' => 'users',
+						'action' => 'login')); ?>
+				/
+				<?php echo $this->Html->link(
+					__('Register', true),
+					array(
+						'controller' => 'users',
+						'action' => 'add')); ?>
+			<?php endif; ?>
 
 			<?php echo $this->Session->flash(); ?>
 

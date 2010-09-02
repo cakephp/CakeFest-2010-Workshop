@@ -54,6 +54,11 @@ class PagesController extends AppController {
  */
 	var $uses = array();
 
+	protected function _setupAuth() {
+		parent::_setupAuth();
+		$this->Auth->allow('display');
+	}
+	
 /**
  * Displays a view
  *
