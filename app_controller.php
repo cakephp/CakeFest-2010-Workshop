@@ -44,6 +44,10 @@ class AppController extends Controller {
 			'action' => 'display',
 			'come-back'
 		);
+		$this->Auth->loginRedirect = array(
+			'controller' => 'events',
+			'action' => 'index'
+		);
 	}
 	
 	protected function _setupUser() {

@@ -55,5 +55,54 @@ class Event extends AppModel {
 			'order' => ''
 		)
 	);
+	
+	public $_findMethods = array('coming' => true);
+
+	public function _findComing($state, $query, $results = array()) {
+		if ($state == 'before') {
+			if (empty($query['month'])){
+				$query['month'] = date('m');
+			}
+			if (empty($query['year'])){
+				$query['year'] = date('Y');
+			}
+			$startDay = '01';
+			$endingDay = 31;
+			if (!empty($query['day'])) {
+				$startDay = $endingDay = $query['day'];
+			}
+			$query['conditions']['Event.date >='] = $query['year'] . '-' . $query['month'] . '-' . $startDay;
+			$query['conditions']['Event.date <='] = $query['year'] . '-' . $query['month'] . '-' . $endingDay;
+			
+			if (!empty($query['operation'])) {
+				return $this->_findCount($state, $query, $results);
+			}
+			return $query;
+		}
+			if (!empty($query['operation'])) {
+				return $this->_findCount($state, $query, $results);
+			}
+		return $results;
+	}
+
+	public function paginateCount($conditions = array(), $recursive = 0, $extra = array()) {
+		$parameters = compact('conditions');
+		if (isset($extra['type'])) {
+			$extra['operation'] = 'count';
+			return $this->find($extra['type'], array_merge($parameters, $extra));
+		} else {
+			return $this->find('count',array_merge($parameters, $extra));
+		}
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
 ?>

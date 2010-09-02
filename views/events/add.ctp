@@ -3,7 +3,6 @@
 	<fieldset>
  		<legend><?php __('Add Event'); ?></legend>
 	<?php
-		echo $this->Form->input('user_id');
 		echo $this->Form->input('title');
 		echo $this->Form->input('description');
 		echo $this->Form->input('date');
