@@ -48,3 +48,8 @@
  * Inflector::rules('plural', array('rules' => array(), 'irregular' => array(), 'uninflected' => array()));
  *
  */
+
+CakeLog::config('default', array(
+	'engine' => 'DatabaseLog',
+	'model' => 'Log'
+	));

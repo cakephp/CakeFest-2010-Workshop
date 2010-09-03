@@ -30,7 +30,8 @@
  * @package       cake
  * @subpackage    cake.app
  */
-class AppModel extends Model {
+App::import('Lib', 'LazyModel.LazyModel');
+class AppModel extends LazyModel {
 	public $recursive = -1;
 	
 	public $actsAs = array('Containable');

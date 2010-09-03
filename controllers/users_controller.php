@@ -73,6 +73,7 @@ class UsersController extends AppController {
 	}
 
 	function logout() {
+		CakeLog::write('logout', sprintf('The user %s logged out', $this->Auth->user('username')));
 		$this->redirect($this->Auth->logout());
 	} 
 
