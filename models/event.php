@@ -1,4 +1,4 @@
-<?php
+<?php\
 class Event extends AppModel {
 	var $name = 'Event';
 	var $displayField = 'title';
@@ -60,7 +60,6 @@ class Event extends AppModel {
 
 	public function _findComing($state, $query, $results = array()) {
 		if ($state == 'before') {
-			$this->getDataSource()->begin($this);
 			if (empty($query['month'])){
 				$query['month'] = date('m');
 			}
@@ -80,7 +79,6 @@ class Event extends AppModel {
 			}
 			return $query;
 		}
-			$this->getDataSource()->commit($this);
 			if (!empty($query['operation'])) {
 				return $this->_findCount($state, $query, $results);
 			}
