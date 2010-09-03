@@ -18,8 +18,8 @@ class EventFixture extends CakeTestFixture {
 
 	var $records = array(
 		array(
-			'id' => '4c7fc468-d2b8-497c-b6c0-0bd89aab1709',
-			'user_id' => 'Lorem ipsum dolor sit amet',
+			'id' => 'event-1',
+			'user_id' => 'user-1',
 			'title' => 'Lorem ipsum dolor sit amet',
 			'description' => 'Lorem ipsum dolor sit amet, aliquet feugiat. Convallis morbi fringilla gravida, phasellus feugiat dapibus velit nunc, pulvinar eget sollicitudin venenatis cum nullam, vivamus ut a sed, mollitia lectus. Nulla vestibulum massa neque ut et, id hendrerit sit, feugiat in taciti enim proin nibh, tempor dignissim, rhoncus duis vestibulum nunc mattis convallis.',
 			'date' => '2010-09-02',

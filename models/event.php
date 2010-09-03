@@ -60,6 +60,7 @@ class Event extends AppModel {
 
 	public function _findComing($state, $query, $results = array()) {
 		if ($state == 'before') {
+			$this->getDataSource()->begin($this);
 			if (empty($query['month'])){
 				$query['month'] = date('m');
 			}
@@ -79,6 +80,7 @@ class Event extends AppModel {
 			}
 			return $query;
 		}
+			$this->getDataSource()->commit($this);
 			if (!empty($query['operation'])) {
 				return $this->_findCount($state, $query, $results);
 			}
@@ -95,11 +97,33 @@ class Event extends AppModel {
 		}
 	}
 	
+
+	public function cachedFindComing($options) {
+		$key = 'find_coming_' . md5(serialize($options));
+		if (!$events = Cache::read($key, 'coming')) {
+			$events = $this->find('coming', $options);
+			Cache::write($key, $events, 'coming');
+		}
+
+		return $events;
+	}
+
+	public function invalidateCache() {
+		Cache::clear(false, 'coming');
+	}
+
+	public function afterSave($created) {
+		parent::afterSave($created);
+		$this->invalidateCache();
+	}
+	public function afterDelete() {
+		parent:afterDelete();
+		$this->invalidateCache();
+	}
 	
-	
-	
-	
-	
+	public function commonContains($options = array()) {
+		return array_merge(array('User'), $options);
+	}
 	
 	
 	

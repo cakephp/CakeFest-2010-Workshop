@@ -1,0 +1,3 @@
+[submodule "plugins/debug_kit"]
+	path = plugins/debug_kit
+	url = http://github.com/cakephp/debug_kit.git

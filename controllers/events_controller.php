@@ -6,12 +6,18 @@ class EventsController extends AppController {
 		'conditions' => array()
 	);
 
+	public function _setupAuth() {
+		parent::_setupAuth();
+		$this->Auth->allow('index');
+	}
+
 	function index() {
 		$this->Event->recursive = 0;
 		if (!empty($this->params['named'])) {
 			$this->paginate['conditions'] = isset($this->paginate['conditions']) ? $this->paginate['conditions'] : array();
 			$this->paginate['conditions'] += $this->params['named'];
 		}
+		$this->paginate['conditions']['user_id'] = $this->Auth->user('id');
 		$this->set('events', $this->paginate());
 	}
 
@@ -20,7 +26,16 @@ class EventsController extends AppController {
 			$this->Session->setFlash(__('Invalid event', true));
 			$this->redirect(array('action' => 'index'));
 		}
-		$this->set('event', $this->Event->read(null, $id));
+		$options = array('User' => array(
+			'conditions' => array(
+				'User.id' => $this->Auth->user('id')
+			)
+		));
+		$event = $this->Event->find('first', array(
+			'conditions' => array('Event.id' => $id),
+			'contain' => $this->Event->commonContains($options)
+		));
+		$this->set('event', $event);
 	}
 
 	function add() {
@@ -84,6 +99,21 @@ class EventsController extends AppController {
 	public function month($month = null, $year = null) {
 		$this->paginate = array('coming') + compact('month', 'year');
 		$this->setAction('index');
+	}
+
+	public function hanger() {
+		for ($i = 0; $i < 100000000; $i++) {
+			
+		}
+		$this->setAction('index');
+	}
+
+	public function list_all($day = null, $month = null, $year = null) {
+		if (!$day) {
+			$day = date('d');
+		}
+		$events = $this->Event->cachedFindComing(compact('day', 'month', 'year'));
+		debug($events); die;
 	}
 }
 ?>

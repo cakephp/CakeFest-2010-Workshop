@@ -300,3 +300,8 @@
  *
  */
 	Cache::config('default', array('engine' => 'File'));
+	Cache::config('coming', array(
+		'engine' => 'File',
+		'prefix' => 'event_coming_',
+		'path' => CACHE . 'event' . DS
+	));

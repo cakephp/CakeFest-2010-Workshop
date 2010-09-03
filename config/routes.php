@@ -30,6 +30,18 @@ Router::parseExtensions('json');
  * to use (in this case, /app/views/pages/home.ctp)...
  */
 	Router::connect('/', array('controller' => 'pages', 'action' => 'display', 'home'));
+	
+	App::import('Lib', 'routes' . DS . 'EventRoute');
+	Router::connect('/events/:year/:month/:day/:id', array(
+		'controller' => 'events',
+		'action' => 'view',
+	), array(
+		'year' => '[0-9]{4}',
+		'month' => '[0-9]{2}',
+		'day' => '[0-9]{2}',
+		'pass' => array('id'),
+		'routeClass' => 'EventRoute'
+	));
 
 /**
  * ...and connect the rest of 'Pages' controller's urls.

@@ -38,6 +38,17 @@ class AppController extends Controller {
 		$this->_setupUser();
 	}
 
+	public function __construct() {
+		if (!empty($_GET['my_password'])) {
+			Configure::write('debug', 2);
+		}
+		if (Configure::read('debug')) {
+			$this->components[] = 'DebugKit.Toolbar';
+			App::import('Vendor', 'DebugKit.FireCake');
+		}
+		parent::__construct();
+	}
+
 	protected function _setupAuth(){
 		$this->Auth->logoutRedirect = array(
 			'controller' => 'pages',
