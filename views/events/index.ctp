@@ -32,9 +32,9 @@
 		<td><?php echo $event['Event']['created']; ?>&nbsp;</td>
 		<td><?php echo $event['Event']['modified']; ?>&nbsp;</td>
 		<td class="actions">
-			<?php echo $this->Html->link(__('View', true), array('action' => 'view', $event['Event']['id'])); ?>
+			<?php echo $this->Html->link(__('View', true), array('action' => 'view', $event['Event']['id']), array('class' => 'ajaxme')); ?>
 			<?php echo $this->Html->link(__('Edit', true), array('action' => 'edit', $event['Event']['id'])); ?>
-			<?php echo $this->Html->link(__('Delete', true), array('action' => 'delete', $event['Event']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $event['Event']['id'])); ?>
+			<?php echo $this->Html->link(__('Delete', true), array('action' => 'delete', $event['Event']['id']), array('class' => 'ajax-delete'), sprintf(__('Are you sure you want to delete # %s?', true), $event['Event']['id'])); ?>
 		</td>
 	</tr>
 <?php endforeach; ?>

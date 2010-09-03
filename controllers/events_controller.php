@@ -61,14 +61,16 @@ class EventsController extends AppController {
 	function delete($id = null) {
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid id for event', true));
-			$this->redirect(array('action'=>'index'));
 		}
 		if ($this->Event->delete($id)) {
 			$this->Session->setFlash(__('Event deleted', true));
-			$this->redirect(array('action'=>'index'));
+		} else {
+			$this->Session->setFlash(__('Event was not deleted', true));
 		}
-		$this->Session->setFlash(__('Event was not deleted', true));
-		$this->redirect(array('action' => 'index'));
+		if (!$this->RequestHandler->prefers('json')) {
+			$this->redirect(array('action' => 'index'));
+		}
+		$this->set('id', $id);
 	}
 
 	public function day($day = null, $month = null, $year = null) {

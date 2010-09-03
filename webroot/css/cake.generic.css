@@ -533,3 +533,11 @@ div.code-coverage-results span.result-ok {
 div.code-coverage-results span.result-good {
 	color: #0a0;
 }
+
+div.overlay {
+	width:400px;
+	height:300px;
+	position:absolute;
+	top:50%;
+	left:50%;
+}

@@ -4,10 +4,10 @@ class DATABASE_CONFIG {
 	var $default = array(
 		'driver' => 'mysql',
 		'persistent' => false,
-		'host' => 'localhost',
+		'host' => '127.0.0.1',
 		'login' => 'root',
-		'password' => 'Abc.123',
-		'database' => 'myevents',
+		'password' => 'root',
+		'database' => 'cakefest',
 	);
 	var $test = array(
 		'driver' => 'mysql',

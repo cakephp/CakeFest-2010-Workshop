@@ -29,7 +29,10 @@
 		echo $this->Html->meta('icon');
 
 		echo $this->Html->css('cake.generic');
-
+		echo $this->Html->css('ui-lightness/ui.css');
+		echo $this->Html->script('http://code.jquery.com/jquery-1.4.2.min.js');
+		echo $this->Html->script('http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.4/jquery-ui.min.js');
+		echo $this->Html->script('cakefest.js');
 		echo $scripts_for_layout;
 	?>
 </head>

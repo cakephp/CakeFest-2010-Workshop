@@ -31,7 +31,7 @@
  * @subpackage    cake.app
  */
 class AppController extends Controller {
-	public $components = array('Session', 'Auth');
+	public $components = array('Session', 'Auth', 'RequestHandler');
 
 	public function beforeFilter() {
 		$this->_setupAuth();
