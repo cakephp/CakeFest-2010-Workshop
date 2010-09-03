@@ -7,7 +7,7 @@ class DATABASE_CONFIG {
 		'host' => '127.0.0.1',
 		'login' => 'root',
 		'password' => 'root',
-		'database' => 'cakefest',
+		'database' => 'cakefest_production',
 	);
 	var $test = array(
 		'driver' => 'mysql',
